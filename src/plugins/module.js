@@ -1,4 +1,5 @@
 angular.module('ngCordova.plugins', [
+  'ngCordova.plugins.3dtouch',
   'ngCordova.plugins.actionSheet',
   'ngCordova.plugins.adMob',
   'ngCordova.plugins.appAvailability',
@@ -28,6 +29,7 @@ angular.module('ngCordova.plugins', [
   'ngCordova.plugins.file',
   'ngCordova.plugins.fileTransfer',
   'ngCordova.plugins.fileOpener2',
+  'ngCordova.plugins.fingerprint',
   'ngCordova.plugins.flashlight',
   'ngCordova.plugins.flurryAds',
   'ngCordova.plugins.ga',

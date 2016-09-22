@@ -8,6 +8,7 @@ describe('Service: $cordovaToast', function() {
     'showShortBottom',
     'showLongTop',
     'showLongCenter',
+    'showWithOptions',
     'showLongBottom'
   ];
 
@@ -38,7 +39,7 @@ describe('Service: $cordovaToast', function() {
         var result;
 
         spyOn(window.plugins.toast, fnName)
-          .andCallFake(function (message, successCb, errorCb) {
+          .and.callFake(function (message, successCb, errorCb) {
             successCb(true);
           });
 
@@ -50,14 +51,14 @@ describe('Service: $cordovaToast', function() {
         $rootScope.$digest();
 
         expect(result).toBe(true);
-        expect(window.plugins.toast[fnName].calls[0].args[0]).toBe('some message');
+        expect(window.plugins.toast[fnName].calls.argsFor(0)[0]).toBe('some message');
       });
 
       it('should call window\'s plugins.toast.' + fnName + ' errorCallback when recjected', function() {
         var errorResult;
 
         spyOn(window.plugins.toast, fnName)
-          .andCallFake(function (message, successCb, errorCb) {
+          .and.callFake(function (message, successCb, errorCb) {
             errorCb('error response');
           });
 
@@ -79,7 +80,7 @@ describe('Service: $cordovaToast', function() {
     var result;
 
     spyOn(window.plugins.toast, 'show')
-      .andCallFake(function (message, duration, position, successCb, errorCb) {
+      .and.callFake(function (message, duration, position, successCb, errorCb) {
         successCb(true);
       });
 
@@ -104,7 +105,7 @@ describe('Service: $cordovaToast', function() {
     var errorResult;
 
     spyOn(window.plugins.toast, 'show')
-      .andCallFake(function (message, duration, position, successCb, errorCb) {
+      .and.callFake(function (message, duration, position, successCb, errorCb) {
         errorCb('error response');
       });
 
@@ -122,7 +123,7 @@ describe('Service: $cordovaToast', function() {
     var errorResult;
 
     spyOn(window.plugins.toast, 'hide')
-      .andCallFake(function () {
+      .and.callFake(function () {
         throw new Error('error response');
       });
 

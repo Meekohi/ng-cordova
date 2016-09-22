@@ -21,7 +21,7 @@ describe('Service: $cordovaSQLite', function() {
     $cordovaSQLite.openDB(dbName);
 
     expect(window.sqlitePlugin.openDatabase).toHaveBeenCalledWith({
-      name: dbName
+      name: dbName, bgType: undefined
     });
   });
 
@@ -56,7 +56,7 @@ describe('Service: $cordovaSQLite', function() {
     var dbName = 'someDbName';
 
     spyOn(window.sqlitePlugin, 'deleteDatabase')
-      .andCallFake(function (dbName, successCb, errorCb) {
+      .and.callFake(function (dbName, successCb, errorCb) {
         successCb(true);
       });
 
@@ -70,14 +70,14 @@ describe('Service: $cordovaSQLite', function() {
     expect(result).toBe(true);
   });
 
-  it('should call errorCb when in window\'s sqlitePlugin.deleteDatabase a error orccurs', function() {
+  it('should call errorCb when in window\'s sqlitePlugin.deleteDatabase an error orccurs', function() {
 
     var result;
     var errorObj = { someError: 1 };
     var dbName = 'someDbName';
 
     spyOn(window.sqlitePlugin, 'deleteDatabase')
-      .andCallFake(function (dbName, successCb, errorCb) {
+      .and.callFake(function (dbName, successCb, errorCb) {
         errorCb(errorObj);
       });
 
@@ -90,5 +90,4 @@ describe('Service: $cordovaSQLite', function() {
 
     expect(result).toBe(errorObj);
   });
-
 });
